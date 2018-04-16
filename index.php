@@ -42,7 +42,7 @@
 
             // If it's a video (.mp4)
             if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
-                echo '<div onclick="setVideo(\''.$dir.'/'.addslashes($node).'\')" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');highlight(event)" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -102,14 +102,26 @@
     /**
      * Re-format a string
      *
-     * @param [type] $string
-     * @return void
+     * @param [string] $string
+     * @return String
      */
     function beautify($string){
         $string = str_replace("-", " ", $string);
         $string = str_replace(".mov", " ", $string);
         $string = str_replace(".mp4", " ", $string);
         return ucwords($string);
+    }
+
+    /**
+     * Make link seo friendly
+     *
+     * @param [string] $string
+     * @return String
+     */
+    function linkify($string){
+        $string = str_replace(" ", "-", $string);
+        $string = str_replace(".", "-", $string);
+        return strtolower($string);
     }
 
 ?>
@@ -129,7 +141,7 @@
 <div id="app" class="bg-grey-light flex mb-4 flex-col-reverse lg:flex-row">
 
     <!-- SIDEBAR -->
-    <div class="overflow-y-scroll w-full text-dark h-screen lg:w-1/5 ">
+    <div class="lg:overflow-y-scroll w-full text-dark h-screen lg:w-1/5 ">
         <?php listHTML(DIR); ?>
     </div>
 
@@ -160,6 +172,7 @@
 </div><!-- /MAIN -->
 
 <script>
+var lastClickedBtn = [];
 
 function setVideo(src){
     var video = document.getElementById('video');
