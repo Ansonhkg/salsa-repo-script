@@ -172,7 +172,6 @@
 </div><!-- /MAIN -->
 
 <script>
-var lastClickedBtn = [];
 
 function setVideo(src){
     var video = document.getElementById('video');
