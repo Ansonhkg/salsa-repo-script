@@ -123,7 +123,7 @@
     <title>The Dance Dojo Repository</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="overflow-auto ">
+<body class="overflow-auto lg:overflow-hidden">
 
 <!-- MAIN -->
 <div id="app" class="bg-grey-light flex mb-4 flex-col-reverse lg:flex-row">
@@ -137,19 +137,19 @@
     <div class="w-full lg:w-4/5">
 
         <!-- Nav -->
-        <div class="sm-w-1/5 bg-grey-lighter p-4 text-center font-bold text-xs sm:text-sm text-grey shadow-md uppercase">
+        <div class="sm-w-1/5 bg-grey-lighter p-2 text-center font-bold text-xs sm:text-sm text-grey shadow-md uppercase">
             <div class="flex flex-wrap sm:inline-flex">
-                <a href="/" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Partnerwork</a>
-                <a href="/?p=2-footwork-on1" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Footwork</a>
-                <a href="/?p=3-musicality" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Musicality</a>
-                <a href="/?p=4-body-movement" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Body Movement</a>
-                <a href="/?p=5-workshop" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Workshop</a>
+                <a href="/" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Partnerwork</a>
+                <a href="/?p=2-footwork-on1" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Footwork</a>
+                <a href="/?p=3-musicality" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Musicality</a>
+                <a href="/?p=4-body-movement" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4">Body Movement</a>
+                <a href="/?p=5-workshop" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Workshop</a>
             </div>
         </div>
         
         <!-- Video Content -->
         <div class="container mx-auto sm:p-4">
-            <video id="video" class="w-full sm:shadow-lg sm:rounded border" controls>
+            <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
