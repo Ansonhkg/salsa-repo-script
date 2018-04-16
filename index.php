@@ -42,7 +42,7 @@
 
             // If it's a video (.mp4)
             if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
-                echo '<div onclick="setVideo(\''.$dir.'/'.addslashes($node).'\')" class="p-1 text-blue cursor-pointer hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div onclick="setVideo(\''.$dir.'/'.addslashes($node).'\')" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -52,7 +52,7 @@
                 if(in_array($node, LEVEL_0)){
                     echo '<div class="bg-blue-darkest font-bold p-4 text-sm text-white">'.$ffName.'</div>';
                 }else{
-                    echo '<div class="bg-blue block text-blue-lighter p-2">'.$ffName.'</div>';
+                    echo '<div class="bg-blue block text-blue-lighter p-1 sm:p-2">'.$ffName.'</div>';
                 }
             }
 
@@ -123,19 +123,22 @@
     <title>The Dance Dojo Repository</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="overflow-hidden">
+<body class="overflow-auto ">
+
 <!-- MAIN -->
-<div id="app" class="bg-grey-light flex mb-4">
+<div id="app" class="bg-grey-light flex mb-4 flex-col-reverse lg:flex-row">
 
     <!-- SIDEBAR -->
-    <div class="text-sm text-dark sidebar overflow-y-scroll bg-grey h-screen w-1/5">
+    <div class="overflow-y-scroll w-full text-dark h-screen lg:w-1/5 ">
         <?php listHTML(DIR); ?>
-    </div> <!-- /SIDEBAR -->
+    </div>
 
-    <!-- VIDEO CONTENT -->
-    <div class="content w-4/5">
-        <div class="bg-grey-lighter p-4 text-center font-bold text-sm text-grey shadow-md uppercase">
-            <div class="flex">
+    <!-- CONTENT -->
+    <div class="w-full lg:w-4/5">
+
+        <!-- Nav -->
+        <div class="sm-w-1/5 bg-grey-lighter p-4 text-center font-bold text-xs sm:text-sm text-grey shadow-md uppercase">
+            <div class="flex flex-wrap sm:inline-flex">
                 <a href="/" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Partnerwork</a>
                 <a href="/?p=2-footwork-on1" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Footwork</a>
                 <a href="/?p=3-musicality" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-2 px-4">Musicality</a>
@@ -144,22 +147,21 @@
             </div>
         </div>
         
-
-        <div class="container mx-auto p-4">
-            <video id="video" class="w-full shadow-lg rounded border" controls>
+        <!-- Video Content -->
+        <div class="container mx-auto sm:p-4">
+            <video id="video" class="w-full sm:shadow-lg sm:rounded border" controls>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
         
-    </div> <!-- /VIDEO CONTENT -->
+    </div>
 
 </div><!-- /MAIN -->
 
 <script>
 
 function setVideo(src){
-    console.log(src)
     var video = document.getElementById('video');
     video.innerHTML = '';    
     var source = document.createElement('source');
