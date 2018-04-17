@@ -42,7 +42,7 @@
 
             // If it's a video (.mp4)
             if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
-                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');highlight(event)" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event)" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -160,13 +160,19 @@
         </div>
         
         <!-- Video Content -->
-        <div class="container mx-auto sm:p-4">
+        <div class="container mx-auto sm:p-4 lg:w-5/6">
             <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-        
+
+        <div class="container mx-auto lg:text-grey flex lg:w-4/5">
+            <h3 class="flex-1 text-right pr-4"><<</h3>
+            <h3 id="video-title" class="lg:text-center"></h3>
+            <h3 class="flex-1 text-left pl-4">>></h3>
+        </div>
+
     </div>
 
 </div><!-- /MAIN -->
@@ -181,6 +187,12 @@ function setVideo(src){
     source.setAttribute('src', src); 
     video.load();
     video.play();
+}
+
+function setTitle(e){
+    var btn = document.getElementById(e.target.id);
+    var videoTitle = document.getElementById('video-title')
+    videoTitle.innerHTML = btn.innerHTML
 }
 
 </script>
