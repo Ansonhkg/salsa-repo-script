@@ -213,7 +213,7 @@ function scrollToTitle(){
     var videoTitle = document.getElementById('video-title')
     var videoId = videoTitle.getAttribute('video_id')
     var btnVideo = document.getElementById(videoId)
-    btnVideo.scrollIntoView({block: 'start', behavior: 'smooth'})
+    btnVideo.scrollIntoView({block: 'center', behavior: 'smooth'})
 }
 
 </script>
