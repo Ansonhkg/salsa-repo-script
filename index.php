@@ -1,5 +1,5 @@
 <?php
-    // UPDATED AT: 2018-04-17 15:48:53
+    // UPDATED AT: 2018-04-17 16:26:20
     
     /**
      * A list of files or folders that you don't want to display
@@ -10,7 +10,10 @@
         'index.html',
         'index_files',
         'index.php',
-        'index2.php',
+        'test.php',
+        'dev.php',
+        '.git',
+        '.gitignore',
     ]);
 
     /**
@@ -22,11 +25,24 @@
         'ogg',
     ]);
 
-    // Get folder option from URL. Default: 1-partnerwork-on1
-    define('DIR', isset($_GET['p']) ? htmlspecialchars($_GET['p']) : '1-partnerwork-on1');
+    // Get folder option from URL. Default: 1-partnerwork
+    define('DIR', isset($_GET['p']) ? htmlspecialchars($_GET['p']) : '1-partnerwork');
     
     // Get a list of folders name in the first level
     define('LEVEL_0', scandir(DIR));
+
+    
+    function navHTML(){
+
+        // Get all nodes and Ignore some
+        $nodes = ignore(scandir('.'), IGNORED_LIST);
+
+        foreach($nodes as $node){
+            $folderName = preg_replace('/[0-9]+/', '', $node);
+            $folderName = beautify($folderName);
+            echo '<a href="/?p='.$node.'" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">'.$folderName.'</a>';
+        }
+    }
 
     /**
      * list all folders and files under a direcotry
@@ -167,11 +183,7 @@
         <!-- Nav -->
         <nav id="menu" class="hidden shadow-lg fixed pin-b w-full z-30 lg:relative lg:opacity-100 lg:block bg-grey-lighter p-2 text-center font-bold text-xs md:text-sm text-grey shadow-md uppercase">
             <div class="flex flex-col lg:block lg:flex-row lg:flex-wrap lg:inline-flex">
-                <a href="/" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline ">Partnerwork</a>
-                <a href="/?p=2-footwork-on1" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Footwork</a>
-                <a href="/?p=3-musicality" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Musicality</a>
-                <a href="/?p=4-body-movement" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Body Movement</a>
-                <a href="/?p=5-workshop" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Workshop</a>
+                <?php navHTML() ;?>
             </div>
         </nav>
         
