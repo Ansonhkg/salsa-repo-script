@@ -1,5 +1,5 @@
 <?php
-    // UPDATED AT: 2018-04-17 14:56:04
+    // UPDATED AT: 2018-04-17 15:48:53
     
     /**
      * A list of files or folders that you don't want to display
@@ -146,29 +146,36 @@
 </head>
 <body class="overflow-auto lg:overflow-hidden">
 
-<!-- MAIN -->
+<!-- App Container -->
 <div id="app" class="bg-grey-light flex mb-4 flex-col-reverse lg:flex-row">
 
-    <!-- SIDEBAR -->
+    <!-- Sidebar -->
     <div class="lg:overflow-y-scroll w-full text-dark h-screen lg:w-1/5 ">
         <?php listHTML(DIR); ?>
     </div>
 
-    <!-- CONTENT -->
+    <!-- Content Area -->
     <div class="w-full lg:w-4/5">
 
-        <!-- Nav -->
-        <div class="sm-w-1/5 bg-grey-lighter p-2 text-center font-bold text-xs sm:text-sm text-grey shadow-md uppercase">
-            <div class="flex flex-wrap sm:inline-flex">
-                <a href="/" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Partnerwork</a>
-                <a href="/?p=2-footwork-on1" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Footwork</a>
-                <a href="/?p=3-musicality" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Musicality</a>
-                <a href="/?p=4-body-movement" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4">Body Movement</a>
-                <a href="/?p=5-workshop" class="flex-1 text-grey-dark hover:bg-grey hover:text-white font-bold py-1 sm:py-2 px-4 leading-loose">Workshop</a>
-            </div>
+        <!-- Mobile Menu Button -->
+        <div class="z-50 fixed pin-b pin-r mr-1 mb-1 block lg:hidden">
+            <span onclick="showMenu()" class="cursor-pointer flex items-center px-3 py-2 rounded shadow-inner border-blue-darker bg-blue-dark text-blue-lightest hover:bg-blue-darker">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            </span>
         </div>
+
+        <!-- Nav -->
+        <nav id="menu" class="hidden shadow-lg fixed pin-b w-full z-30 lg:relative lg:opacity-100 lg:block bg-grey-lighter p-2 text-center font-bold text-xs md:text-sm text-grey shadow-md uppercase">
+            <div class="flex flex-col lg:block lg:flex-row lg:flex-wrap lg:inline-flex">
+                <a href="/" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline ">Partnerwork</a>
+                <a href="/?p=2-footwork-on1" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Footwork</a>
+                <a href="/?p=3-musicality" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Musicality</a>
+                <a href="/?p=4-body-movement" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Body Movement</a>
+                <a href="/?p=5-workshop" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">Workshop</a>
+            </div>
+        </nav>
         
-        <!-- Video Content -->
+        <!-- Video Container -->
         <div class="container mx-auto sm:p-4 lg:w-5/6">
             <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls loop>
                 <source src="" type="video/mp4">
@@ -224,6 +231,11 @@ function scrollToTitle(){
     var btnVideo = document.getElementById(videoId)
     btnVideo.scrollIntoView({block: 'center', behavior: 'smooth'})
 }
+
+function showMenu(){
+    var menu = document.getElementById('menu')
+    menu.classList.toggle('hidden')
+}   
 
 </script>
 
