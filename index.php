@@ -1,5 +1,6 @@
 <?php
-
+    // UPDATED AT: 2018-04-17 14:22:57
+    
     /**
      * A list of files or folders that you don't want to display
      */
