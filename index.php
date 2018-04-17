@@ -42,7 +42,7 @@
 
             // If it's a video (.mp4)
             if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
-                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event)" class="btn-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event);" class="video-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -196,8 +196,17 @@ function setTitle(e){
     videoScrollTo.innerHTML = '(Scroll to)'
     videoTitle.setAttribute('video_id', btn.id);
     videoTitle.scrollIntoView({block: 'end', behavior: 'auto'})
-    //highlight
 
+    highlight(btn)
+}
+
+function highlight(btn){
+    var btns = document.getElementsByClassName('video-link')
+    Array.prototype.forEach.call(btns, function(btn){
+        btn.classList.remove('p-4', 'bg-blue-darkest', 'font-bold', 'text-blue-lighter')
+    })
+
+    btn.classList.add('p-4', 'bg-blue-darkest', 'font-bold', 'text-blue-lighter')
 }
 
 function scrollToTitle(){
