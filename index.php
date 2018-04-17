@@ -1,5 +1,5 @@
 <?php
-    // UPDATED AT: 2018-04-17 14:22:57
+    // UPDATED AT: 2018-04-17 14:56:04
     
     /**
      * A list of files or folders that you don't want to display
@@ -12,7 +12,16 @@
         'index.php',
         'index2.php',
     ]);
-    
+
+    /**
+     * A list of video format you want to support
+     */
+    define("SOURCE_FORMAT", [
+        'mp4',
+        'mov',
+        'ogg',
+    ]);
+
     // Get folder option from URL. Default: 1-partnerwork-on1
     define('DIR', isset($_GET['p']) ? htmlspecialchars($_GET['p']) : '1-partnerwork-on1');
     
@@ -41,14 +50,13 @@
             
             echo "<li id='$node'>";
 
-            // If it's a video (.mp4)
-            if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
+            // If it's a video 
+            if(isset($nodeInfo['extension']) && in_array(strtolower($nodeInfo['extension']), SOURCE_FORMAT)){
                 echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event);" class="video-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
             if(is_dir($path)){
-
                 // If it's first level
                 if(in_array($node, LEVEL_0)){
                     echo '<div class="bg-blue-darkest font-bold p-4 text-sm text-white">'.$ffName.'</div>';
@@ -162,7 +170,7 @@
         
         <!-- Video Content -->
         <div class="container mx-auto sm:p-4 lg:w-5/6">
-            <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls>
+            <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls loop>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
