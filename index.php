@@ -42,7 +42,7 @@
 
             // If it's a video (.mp4)
             if(isset($nodeInfo['extension']) && $nodeInfo['extension'] === 'mp4'){
-                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event)" class="sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event)" class="btn-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -167,10 +167,9 @@
             </video>
         </div>
 
-        <div class="container mx-auto lg:text-grey flex lg:w-4/5">
-            <h3 class="flex-1 text-right pr-4"><<</h3>
-            <h3 id="video-title" class="lg:text-center"></h3>
-            <h3 class="flex-1 text-left pl-4">>></h3>
+        <!-- Video Title -->
+        <div class="text-center container mx-auto text-grey w-4/5 text-sm pb-2 lg:pb-x lg:text-lg">
+            <h3 onclick="scrollToTitle()" id="video-title" class="text-center cursor-pointer underline"></h3><h6 id="video-scroll-to-text" class="text-xs"><h6>
         </div>
 
     </div>
@@ -192,7 +191,20 @@ function setVideo(src){
 function setTitle(e){
     var btn = document.getElementById(e.target.id);
     var videoTitle = document.getElementById('video-title')
+    var videoScrollTo = document.getElementById('video-scroll-to-text')
     videoTitle.innerHTML = btn.innerHTML
+    videoScrollTo.innerHTML = '(Scroll to)'
+    videoTitle.setAttribute('video_id', btn.id);
+    videoTitle.scrollIntoView({block: 'end', behavior: 'auto'})
+    //highlight
+
+}
+
+function scrollToTitle(){
+    var videoTitle = document.getElementById('video-title')
+    var videoId = videoTitle.getAttribute('video_id')
+    var btnVideo = document.getElementById(videoId)
+    btnVideo.scrollIntoView({block: 'start', behavior: 'smooth'})
 }
 
 </script>
