@@ -1,5 +1,5 @@
 <?php
-    // UPDATED AT: 2018-04-18 21:04:53
+    // UPDATED AT: 2018-04-18 21:08:23
     
     /**
      * A list of files or folders that you don't want to display
@@ -67,14 +67,14 @@
             echo "<li id='$node'>";
 
             // If it's a video 
-            if(isset($nodeInfo['extension']) && in_array(strtolower($nodeInfo['extension']), SOURCE_FORMAT)){
+            if(isset($nodeInfo['extension']) && in_array(strtolower($nodeInfo['extension']), unserialize(SOURCE_FORMAT))){
                 echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event);" class="video-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
             if(is_dir($path)){
                 // If it's first level
-                if(in_array($node, LEVEL_0)){
+                if(in_array($node, unserialize(LEVEL_0))){
                     echo '<div class="bg-blue-darkest font-bold p-4 text-sm text-white">'.$ffName.'</div>';
                 }else{
                     echo '<div class="bg-blue block text-blue-lighter p-1 sm:p-2">'.$ffName.'</div>';
@@ -101,7 +101,7 @@
      */
     function ignore(Array $dir, $unwantedFiles){
         $unwantedFiles = unserialize($unwantedFiles);
-        
+
         foreach($unwantedFiles as $fileName){
             $fileNameIndex = array_search($fileName, $dir, true);
             unset($dir[$fileNameIndex]);
