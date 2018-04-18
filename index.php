@@ -1,10 +1,10 @@
 <?php
-    // UPDATED AT: 2018-04-17 16:26:20
+    // UPDATED AT: 2018-04-18 21:04:53
     
     /**
      * A list of files or folders that you don't want to display
      */
-    define("IGNORED_LIST", [
+    define("IGNORED_LIST", serialize([
         '.', 
         '..', 
         'index.html',
@@ -14,22 +14,22 @@
         'dev.php',
         '.git',
         '.gitignore',
-    ]);
+    ]));
 
     /**
      * A list of video format you want to support
      */
-    define("SOURCE_FORMAT", [
+    define("SOURCE_FORMAT", serialize([
         'mp4',
         'mov',
         'ogg',
-    ]);
+    ]));
 
     // Get folder option from URL. Default: 1-partnerwork
     define('DIR', isset($_GET['p']) ? htmlspecialchars($_GET['p']) : '1-partnerwork');
     
     // Get a list of folders name in the first level
-    define('LEVEL_0', scandir(DIR));
+    define('LEVEL_0', serialize(scandir(DIR)));
 
     
     function navHTML(){
@@ -99,7 +99,8 @@
      * @param [array] $unwantedFiles
      * @return Array
      */
-    function ignore(Array $dir, Array $unwantedFiles){
+    function ignore(Array $dir, $unwantedFiles){
+        $unwantedFiles = unserialize($unwantedFiles);
         
         foreach($unwantedFiles as $fileName){
             $fileNameIndex = array_search($fileName, $dir, true);
@@ -157,9 +158,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Dance Dojo Repository</title>
+    <title>My Repository</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="overflow-auto lg:overflow-hidden">
 
 <!-- App Container -->
@@ -189,7 +191,7 @@
         
         <!-- Video Container -->
         <div class="container mx-auto sm:p-4 lg:w-5/6">
-            <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" controls loop>
+            <video id="video" class="lg: w-full sm:shadow-lg sm:rounded border" style="max-height:650px" controls loop>
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
