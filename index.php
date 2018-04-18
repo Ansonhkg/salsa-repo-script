@@ -1,5 +1,5 @@
 <?php
-    // UPDATED AT: 2018-04-18 21:08:23
+    // UPDATED AT: 2018-04-18 21:14:26
     
     /**
      * A list of files or folders that you don't want to display
@@ -40,7 +40,7 @@
         foreach($nodes as $node){
             $folderName = preg_replace('/[0-9]+/', '', $node);
             $folderName = beautify($folderName);
-            echo '<a href="/?p='.$node.'" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">'.$folderName.'</a>';
+            echo '<a href="'.dirname($_SERVER['PHP_SELF']).'/?p='.$node.'" class="text-grey-dark sm:py-2 hover:bg-grey hover:text-white font-bold py-1 px-4 no-underline">'.$folderName.'</a>';
         }
     }
 
