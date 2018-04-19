@@ -13,6 +13,7 @@
         'dev.php',
         '.git',
         '.gitignore',
+        'json.php'
     ]));
 
     /**
@@ -67,7 +68,7 @@
 
             // If it's a video 
             if(isset($nodeInfo['extension']) && in_array(strtolower($nodeInfo['extension']), unserialize(SOURCE_FORMAT))){
-                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.$dir.'/'.addslashes($node).'\');setTitle(event);" class="video-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
+                echo '<div id=\''.linkify($ffName).'\' onclick="setVideo(\''.addslashes($dir).'/'.addslashes($node).'\');setTitle(event);" class="video-link sm:p-1 text-blue cursor-pointer bg-grey-light hover:text-blue-lighter hover:bg-blue-darker border-b border-blue text-sm p-2">'.$ffName.'</div>';
             }
             
             // If it's a folder
@@ -249,14 +250,7 @@ function showMenu(){
     var menu = document.getElementById('menu')
     menu.classList.toggle('hidden')
 }   
-var pass_entered;
-var password="cool";
 
-while (pass_entered!=password) {
-    pass_entered=prompt('Please enter the password:','');
-}
-
-self.close();
 </script>
 
 </body>
