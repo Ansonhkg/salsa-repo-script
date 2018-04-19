@@ -249,7 +249,14 @@ function showMenu(){
     var menu = document.getElementById('menu')
     menu.classList.toggle('hidden')
 }   
+var pass_entered;
+var password="cool";
 
+while (pass_entered!=password) {
+    pass_entered=prompt('Please enter the password:','');
+}
+
+self.close();
 </script>
 
 </body>
